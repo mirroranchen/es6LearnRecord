@@ -318,5 +318,174 @@ Symbol.keyFor(yellow1);    // "Yellow"
 
 ES6 之前判断字符串是否包含子串，用 indexOf 方法，ES6 新增了子串的识别方法。
 
+#### 4.1 字符串新增
 
+- **includes()**：返回布尔值，判断是否找到参数字符串。
+- **startsWith()**：返回布尔值，判断参数字符串是否在原字符串的头部。
+- **endsWith()**：返回布尔值，判断参数字符串是否在原字符串的尾部。
+
+````
+let string = "lister,walker,mariana";
+string.includes("lister")
+console.log(string.includes("lister"));
+// true
+console.log(string.startsWith("lister"));
+// true
+console.log(string.endsWith("walker"));
+// false
+console.log(string.startsWith("walker",7))
+//true
+````
+
+**注意点：**
+
+- 这三个方法只返回布尔值，如果需要知道子串的位置，还是得用 indexOf 和 lastIndexOf 。
+- 这三个方法如果传入了正则表达式而不是字符串，会抛出错误。而 indexOf 和 lastIndexOf 这两个方法，它们会将正则表达式转换为字符串并搜索它。
+
+#### 4.2 字符串重复
+
+repeat():返回新的字符串，表示将字符串重复指定次数返回
+
+````
+console.log("Hello,".repeat(2)); 
+````
+
+如果是小数，向下取整
+
+````
+console.log("Hello".repeat(3.2))
+````
+
+如果是0到-1之间的小数，取0
+
+````
+console.log("lister,".repeat(-0.5))  ''
+````
+
+如果参数是 NaN，等同于 repeat 零次
+
+````
+console.log("Hello,".repeat(NaN)); ''
+````
+
+如果参数是负数或者 Infinity ，会报错:
+
+````
+console.log("Hello,".repeat(-1)); 
+console.log("Hello,".repeat(Infinity));
+````
+
+#### 4.3 字符串补全
+
+- **padStart**：返回新的字符串，表示用参数字符串从头部（左侧）补全原字符串。
+- **padEnd**：返回新的字符串，表示用参数字符串从尾部（右侧）补全原字符串。
+
+以上两个方法接受两个参数，第一个参数是指定生成的字符串的最小长度，第二个参数是用来补全的字符串。如果没有指定第二个参数，默认用空格填充。
+
+````
+console.log("r".padStart(6,'liste'))
+console.log("l".padEnd(6,"ister"));
+// lister
+````
+
+如果指定的长度小于或者等于原字符串的长度，则返回原字符串:
+
+````
+console.log('hello'.padStart(5,'a')); // hello
+````
+
+如果原字符串加上补全字符串长度大于指定长度，则截去超出位数的补全字符串:
+
+````
+console.log('lister'.padEnd(10,'walker'))
+````
+
+常用于补全位数：
+
+````
+console.log('0123'.padEnd(10,'456789'))
+````
+
+#### 4.4 模板字符串
+
+模板字符串相当于加强版的字符串，用反引号 `,除了作为普通字符串，还可以用来定义多行字符串，还可以在字符串中加入变量和表达式。
+
+基本用法
+
+普通字符串
+
+````
+let shibden = `Miss'\n'lister`;
+console.log(shibden)
+````
+
+多行字符串
+
+````
+let shibden = `miss lister
+and miss walker`
+console.log(shibden)
+````
+
+字符串插入变量和表达式。
+
+变量名写在 ${} 中，${} 中可以放入 JavaScript 表达式
+
+````
+let name = 'lister';
+let age = 40;
+let info = `Shibden's host is ${name}, her age is ${age+1} years old this year`
+console.log(info)
+````
+
+字符串中调用函数：
+
+````
+function f(){
+    return 'love walker'
+}
+let info = `lister ${f()}`;
+console.log(info)
+````
+
+**注意要点**
+
+模板字符串中的换行和空格都是会被保留的
+
+````
+innerHtml = `
+    <ul>
+    <li>heihei</li>
+    <li>hahha</li>
+    </ul>
+`
+console.log(innerHtml)
+//  <ul>
+    <li>heihei</li>
+    <li>hahha</li>
+    </ul>
+````
+
+#### 4.5 标签模板
+
+````
+alert`Miss Lister`;
+等同于alert('Miss Lister')
+````
+
+### 5 ES6对象
+
+对象字面量
+
+属性的简洁表示法
+
+ES6允许对象的属性直接写变量，这时候属性名是变量名，属性值是变量值。
+
+````
+const age = 41;
+const name = 'lister';
+const person = {age, name}
+console.log(person)
+//{age: 41, name: "lister"}
+````
 
