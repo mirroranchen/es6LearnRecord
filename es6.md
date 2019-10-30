@@ -492,6 +492,11 @@ console.log(person)
 方法名也可以缩写.
 
 ````
-
+const person = {
+    sayHi(){
+        console.log('hi');
+    }
+}
+person.sayHi();
 ````
 
