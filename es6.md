@@ -661,5 +661,5 @@ Object.is(NaN,NaN); //true
 NaN === NaN  //false
 ````
 
-
+### 6 ES6 数组
 
