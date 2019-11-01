@@ -665,7 +665,7 @@ NaN === NaN  //false
 
 #### 6.1 数组创建
 
-##### 6.1.2 Array.of()
+##### 6.1.1 Array.of()
 
 将参数中所有值作为元素形成数组。
 
@@ -679,4 +679,62 @@ console.log(Array.of(1, '2', true)); // [1, '2', true]
 // 参数为空时返回空数组
 console.log(Array.of()); // []
 ````
+
+##### 6.1.2 Array.from()
+
+将类数组对象或可迭代对象转化为数组。
+
+````
+// 参数为数组,返回与原数组一样的数组
+console.log(Array.from([1,2,3]))
+//(3) [1, 2, 3]
+console.log(Array.from([1, , 3])); 
+// [1, undefined, 3]
+````
+
+
+
+```
+Array.from(arrayLike[, mapFn[, thisArg]])
+```
+
+返回值为转换后的数组。
+
+**arrayLike**
+
+````
+console.log(Array.from([1, 2, 3])); // [1, 2, 3]
+````
+
+mapFn
+
+可选，map 函数，用于对每个元素进行处理，放入数组的是处理后的元素。
+
+````
+console.log(Array.from([1, 2, 3],(n)=>n*2)); 
+//[2, 4, 6]
+````
+
+thisArg
+
+可选，用于指定 map 函数执行时的 this 对象。
+
+
+````
+let map = {
+    do: function(n) {
+        return n * 2;
+    }
+}
+let arrayLike = [1, 2, 3];
+console.log(Array.from(arrayLike, function (n){
+    return this.do(n);
+}, map)); // [2, 4, 6]
+````
+
+##### 6.1.3 类数组对象
+
+一个类数组对象必须含有 length 属性，且元素属性名必须是数值或者可转换为数值的字符。
+
+
 
