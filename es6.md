@@ -736,5 +736,33 @@ console.log(Array.from(arrayLike, function (n){
 
 一个类数组对象必须含有 length 属性，且元素属性名必须是数值或者可转换为数值的字符。
 
+````
+let arr = Array.from({
+    0:1,
+    1:2,
+    2:3,
+    length:3
+})
+console.log(arr)
+//-------------------------------
+//没有length，会报错
+let arr = Array.from({
+    0:1,
+    1:2,
+    2:3,
+    length:3
+})
+console.log(arr)
+//// 元素属性名不为数值且无法转换为数值，返回长度为 length 元素值为 undefined 的数组  
+let arr = Array.from({
+    a:1,
+    b:2,
+    c:3,
+    length:3
+})
+console.log(arr);
+// [undefined, undefined, undefined]
+````
+
 
 
