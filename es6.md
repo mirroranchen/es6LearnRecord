@@ -766,3 +766,62 @@ console.log(arr);
 
 
 
+##### 6.1.4 转换可迭代对象
+
+转换map 
+
+````
+let map = new Map();
+map.set('name1','lister');
+map.set('name2','lister2');
+console.log(Array.from(map))
+//[Array(2), Array(2)]
+````
+
+**转换 set**
+
+````
+let arr = [1,2,3];
+let set = new Set(arr);
+console.log(Array.from(set))
+//[1, 2, 3]
+````
+
+**转换字符串**
+
+````
+let str = 'lister'
+console.log(Array.from(str));
+// ["l", "i", "s", "t", "e", "r"]
+
+````
+
+####　6.2扩展的方法
+
+##### 6.2.1 查找
+
+find()
+
+查找数组中符合条件的元素,若有多个符合条件的元素，则返回第一个元素。
+
+`````
+let arr = Array.of(1,2,3,4)
+console.log(arr.find(item=>item>3))
+//4
+// 数组空位处理为 undefined
+console.log([, 1].find(n => true)); // undefined
+`````
+
+findIndex()
+
+查找数组中符合条件的元素索引，若有多个符合条件的元素，则返回第一个元素索引。
+
+````
+let arr = Array.of(1, 2, 1, 3);
+// 参数1：回调函数
+// 参数2(可选)：指定回调函数中的 this 值
+console.log(arr.findIndex(item => item = 1)); // 0
+// 数组空位处理为 undefined
+console.log([, 1].findIndex(n => true)); //0
+````
+
