@@ -863,3 +863,14 @@ console.log([1,2, ,4].copyWithin(0,2,4));
 // [empty, 4, empty, 4]
 ````
 
+##### 6.2.3遍历
+
+ **entries()**遍历键值对。
+
+  **keys()**遍历键名
+
+ **values()**遍历键值。
+
+
+
+ 
