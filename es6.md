@@ -898,6 +898,156 @@ console.log([1, [2, [3, [4, 5]]]].flat(Infinity)); // [1, 2, 3, 4, 5]
 console.log([1, [2, , 3]].flat());<p> // [1, 2, 3]
 ````
 
+#### 6.5 扩展运算符
 
+复制数组
 
+````
+let arr = [1,2]
+let arr1 = [...arr]
+console.log(arr1)
+````
+
+合并数组
+
+````
+console.log([...[1,2],...[7,8]])
+//[1,2,7,8]
+````
+
+### 7 Es6函数
+
+#### 7.1 函数参数的扩展
+
+##### 7.1.1 默认参数
+
+基本用法
+
+````
+function fn(name,age=41){
+    console.log(name+','+age)
+}
+fn('lister',42)
+fn('lister','')
+fn('lister')
+````
+
+> 注意点：使用函数默认参数时，不允许有同名参数。
+
+只有在未传递参数，或者参数为 undefined 时，才会使用默认参数，null 值被认为是有效的值传递。
+
+````
+function fn(name,age=41){
+    console.log(name+','+age)
+}
+fn('lister',undefined)
+//lister ,41
+
+//----------------
+function fn(name,age=41){
+    console.log(name+','+age)
+}
+fn('lister',null)
+//lister ,null
+````
+
+##### 7.1.2 不定参数
+
+不定参数用来表示不确定参数个数，形如，...变量名，由...加上一个具名参数标识符组成。具名参数只能放在参数组的最后，并且有且只有一个不定参数。
+
+基本用法
+
+````
+function fn(...values){
+    console.log(values.length)
+}
+f(1,2) //2
+````
+
+#### 7.2 箭头函数
+
+箭头函数提供了一种更加简洁的函数书写方式。基本语法是：
+
+参数=>函数体
+
+基本用法
+
+````
+var f = v => console.log(v);
+//等价于
+var f2 = function(a){
+ return a;
+}
+f(1);  //1
+````
+
+当箭头函数没有参数或者有多个参数，要用 () 括起来
+
+当箭头函数函数体有多行语句，用 {} 包裹起来，表示代码块，当只有一行语句，并且需要返回结果时，可以省略 {} , 结果会自动返回。
+
+当箭头函数要返回对象的时候，为了区分于代码块，要用 () 将对象包裹起来
+
+`````
+// 报错
+var f = (id,name) => {id: id, name: name};
+f(6,2);  // SyntaxError: Unexpected token :
  
+// 不报错
+var f = (id,name) => ({id: id, name: name});
+f(6,2);  // {id: 6, name: 2}
+`````
+
+注意点：没有 this、super、arguments 和 new.target 绑定。
+
+箭头函数体中的 this 对象，是定义函数时的对象，而不是使用函数时的对象
+
+### 8 Es6 迭代器
+
+iterator
+
+Iterator 是 ES6 引入的一种新的遍历机制，迭代器有两个核心概念：
+
++ 迭代器是一个统一的接口，它的作用是使各种数据结构可被便捷的访问，它是通过一个键为Symbol.iterator 的方法来实现。
++ 迭代器是用于遍历数据结构元素的指针（如数据库中的游标）
+
+### 9 es6 Class类
+
+在ES6中，class (类)作为对象的模板被引入，可以通过 class 关键字定义类。
+
+class 的本质是 function。
+
+它可以看作一个语法糖，让对象原型的写法更加清晰、更像面向对象编程的语法。
+
+#### 9.1 基础用法
+
+##### 9.1.1 类定义
+
+类表达式可以为匿名或命名。
+
+````
+//匿名类
+//类表达式可以为匿名或命名
+let Example = class {
+    constructor(a){
+        this.a = a
+    }
+}
+//命名类
+let Example = class Example {
+    constructor(a){
+        this.a = a;
+    }
+}
+````
+
+##### 9.1.2 类声明
+
+````
+class Example {
+    constructor(a){
+        this.a = a;
+    }
+}
+````
+
+注意要点：不可重复声明。
